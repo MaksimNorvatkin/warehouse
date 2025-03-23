@@ -13,9 +13,9 @@ public class ItemControllerImpl implements ItemController {
         this.view = view;
         service = new Service(this);
     }
-    public void addItem (String product, Double price,
+    public void addItem (Integer idWarehous, String product, Double price,
                          Integer item, String supplier){
-        String infoString = service.addItem(product, price, item, supplier);
+        String infoString = service.addItem(idWarehous, product, price, item, supplier);
         view.printAnswer(infoString);
     }
 }

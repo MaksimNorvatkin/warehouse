@@ -2,15 +2,15 @@ package model.entity;
 
 public class Item {
     private Integer id;
-    private Integer idItem;
+    private Integer idWarehous;
     private String product;
     private Double price;
     private Integer itemProduct;
     private Double priceItem;
     private String supplier;
 
-    public Item(String product, Double price, Integer item, String supplier) {
-
+    public Item(Integer idWarehous, String product, Double price, Integer item, String supplier) {
+        this.idWarehous =idWarehous;
         this.product = product;
         this.price = price;
         this.itemProduct = item;
@@ -22,8 +22,8 @@ public class Item {
         return id;
     }
 
-    public Integer getIdItem() {
-        return idItem;
+    public Integer getIdWarehous() {
+        return idWarehous;
     }
 
     public String getProduct() {
@@ -51,8 +51,8 @@ public class Item {
         this.id = id;
     }
 
-    public void setIdItem(Integer idItem) {
-        this.idItem = idItem;
+    public void setIdWarehous(Integer idWarehous) {
+        this.idWarehous = idWarehous;
     }
 
     public void setProduct(String product) {
@@ -82,7 +82,7 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "id=" + id +
-                ", idItem=" + idItem +
+                ", idItem=" + idWarehous +
                 ", product='" + product + '\'' +
                 ", price=" + price +
                 ", itemProduct=" + itemProduct +

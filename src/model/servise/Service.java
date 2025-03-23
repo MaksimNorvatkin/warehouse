@@ -12,9 +12,9 @@ public class Service {
         this.repository=new Warehouse();
         this.controllerImpl=itemController;
     }
-    public String addItem(String product, Double price,
+    public String addItem(Integer idWarehous, String product, Double price,
                           Integer item, String supplier){
-        Item itemInvoice = new Item(product, price, item, supplier);
+        Item itemInvoice = new Item(idWarehous, product, price, item, supplier);
         return repository.add(itemInvoice).toString();
     }
 }

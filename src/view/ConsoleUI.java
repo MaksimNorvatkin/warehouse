@@ -40,9 +40,11 @@ public class ConsoleUI implements View{
         System.out.print("\nВведите количество товара: ");
         int item = Integer.parseInt(scanner.nextLine());
         System.out.print("\nВведите имя постовщика: ");
-        String supplier = scanner.next();
+        String supplier = scanner.nextLine();
+        System.out.print("\nВведите номер склада(Их два: склад№1 и склад№2): ");
+        int idWarehous = Integer.parseInt(scanner.nextLine());
         System.out.println();
-        controller.addItem(product, price, item, supplier);
+        controller.addItem(idWarehous, product, price, item, supplier);
     }
 
     @Override
