@@ -33,18 +33,28 @@ public class ConsoleUI implements View{
         System.out.println("Отгрузка завершена.");
     }
     public void addItem() {
-        System.out.print("\nВведите наименование товара: ");
-        String product = scanner.nextLine();
-        System.out.print("\nВведите цену за единицу товара: ");
-        double price = Double.parseDouble(scanner.nextLine());
-        System.out.print("\nВведите количество товара: ");
-        int item = Integer.parseInt(scanner.nextLine());
-        System.out.print("\nВведите имя постовщика: ");
+        System.out.print("Введите имя постовщика: ");
         String supplier = scanner.nextLine();
-        System.out.print("\nВведите номер склада(Их два: склад№1 и склад№2): ");
-        int idWarehous = Integer.parseInt(scanner.nextLine());
-        System.out.println();
-        controller.addItem(idWarehous, product, price, item, supplier);
+
+        boolean continueAdding = true;
+        while (continueAdding) {
+            System.out.print("\nВведите наименование товара: ");
+            String product = scanner.nextLine();
+            System.out.print("\nВведите цену за единицу товара: ");
+            double price = Double.parseDouble(scanner.nextLine());
+            System.out.print("\nВведите количество товара: ");
+            int item = Integer.parseInt(scanner.nextLine());
+            System.out.print("\nВведите номер склада(Их два: склад№1 и склад№2): ");
+            int idWarehous = Integer.parseInt(scanner.nextLine());
+            System.out.println();
+            controller.addItem(idWarehous, product, price, item, supplier);
+
+            System.out.print("Продолжить добавление товаров в накладную? (yes/no): ");
+            String response = scanner.nextLine();
+            if (response.equalsIgnoreCase("no")) {
+                continueAdding = false;
+            }
+        }
     }
 
     @Override
