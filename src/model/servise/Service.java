@@ -22,4 +22,7 @@ public class Service {
     public List<Item> getAllItems() {
         return repository.getAllItems();
     }
+    public List<String> getAllSuppliers(){
+        return repository.getAllSuppliers();
+    }
 }

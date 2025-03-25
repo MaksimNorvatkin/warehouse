@@ -28,4 +28,9 @@ public class ItemControllerImpl implements ItemController {
     public List<Item> getAllItems() {
         return service.getAllItems();
     }
+
+    @Override
+    public List<String> getAllSuppliers() {
+        return service.getAllSuppliers();
+    }
 }

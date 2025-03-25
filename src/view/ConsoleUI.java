@@ -2,36 +2,41 @@ package view;
 
 import controller.ItemController;
 import model.entity.Item;
+
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
-public class ConsoleUI implements View{
+public class ConsoleUI implements View {
 
     private final Scanner scanner;
     public ItemController controller;
     private final Menu menu;
     private boolean work;
 
-public ConsoleUI(ItemController controller) {
-    scanner = new Scanner(System.in);
-    this.controller = controller;
-    menu = new Menu(this);
-    work = true;
-}
+    public ConsoleUI(ItemController controller) {
+        scanner = new Scanner(System.in);
+        this.controller = controller;
+        menu = new Menu(this);
+        work = true;
+    }
+
     private void execute() {
         System.out.print("Введите соответстующий пункт меню: ");
         int numMenu = scanner.nextInt();
         scanner.nextLine();
         menu.execute(numMenu);
     }
+
     public void run() {
         System.out.print("\nНакладная\n");
-        while(work) {
+        while (work) {
             System.out.println(menu.printMenu());
             execute();
         }
         System.out.println("Отгрузка завершена.");
     }
+
     public void addItem() {
         System.out.print("Введите имя постовщика: ");
         String supplier = scanner.nextLine();
@@ -56,6 +61,7 @@ public ConsoleUI(ItemController controller) {
             }
         }
     }
+
     public void showAllItems() {
         List<Item> items = controller.getAllItems();
         if (items.isEmpty()) {
@@ -72,11 +78,27 @@ public ConsoleUI(ItemController controller) {
 
     private String formatItem(Item item) {
         return String.format(
-                "ID: %d | Товар: %-15s | Цена: %-8.2f | Кол-во: %-4d | Сумма: %-8.2f | Поставщик: %-15s | Склад: %d",
-                item.getId(), item.getProduct(), item.getPrice(),
+                "Товар: %-15s | Цена: %-8.2f | Кол-во: %-4d | Сумма: %-8.2f | Поставщик: %-15s | Склад: %d",
+                item.getProduct(), item.getPrice(),
                 item.getItemProduct(), item.getPrice() * item.getItemProduct(),
                 item.getSupplier(), item.getIdWarehous()
         );
+    }
+
+    public void showAllSuppliers() {
+        List<String> suppliers = controller.getAllSuppliers();
+        if (suppliers.isEmpty()) {
+            printAnswer("Список поставщиков пуст.");
+        } else {
+            String result = suppliers.stream()
+                    .map(this::formatSupplier)
+                    .collect(Collectors.joining("\n", "Список поставщиков:\n", ""));
+            printAnswer(result);
+        }
+    }
+    private String formatSupplier(String supplier) {
+        return String.format(
+                "Поставщик: %-15s",supplier);
     }
 
     @Override
