@@ -10,7 +10,7 @@ public class Item {
     private String supplier;
 
     public Item(Integer idWarehous, String product, Double price, Integer item, String supplier) {
-        this.idWarehous =idWarehous;
+        this.idWarehous = idWarehous;
         this.product = product;
         this.price = price;
         this.itemProduct = item;
@@ -66,6 +66,7 @@ public class Item {
     public void setItemProduct(Integer itemProduct) {
         this.itemProduct = itemProduct;
     }
+
     private double calculatePriceItem() {
         return price * itemProduct;
     }
@@ -80,14 +81,9 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", idItem=" + idWarehous +
-                ", product='" + product + '\'' +
-                ", price=" + price +
-                ", itemProduct=" + itemProduct +
-                ", priceItem=" + priceItem +
-                ", supplier='" + supplier + '\'' +
-                '}';
+        return String.format(
+                "Товар: %-15s | Цена: %-8.2f | Количество: %-4d | Сумма: %-8.2f | Поставщик: %-15s | Склад: %d",
+                product, price, itemProduct, price * itemProduct, supplier, idWarehous
+        );
     }
 }

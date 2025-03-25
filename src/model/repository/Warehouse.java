@@ -19,6 +19,9 @@ public class Warehouse {
         invoce.add(item);
         return item;
     }
+    public List<Item> getAllItems() {
+        return new ArrayList<>(invoce); // Возвращаем копию списка для безопасности
+    }
 
     public List<String> allProduct() {
         List<String> products = new ArrayList<>();
