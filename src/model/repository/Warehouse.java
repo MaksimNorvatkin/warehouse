@@ -4,46 +4,44 @@ import model.entity.Item;
 import model.entity.NameProdukt;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Warehouse {
-    private List<Item> invoce;
+    private List<Item> invoice;
     private long nextId;
 
     public Warehouse() {
-        invoce = new ArrayList<>();
+        invoice = new ArrayList<>();
         nextId = 1;
     }
 
     public Item add(Item item) {
-        invoce.add(item);
+        invoice.add(item);
         return item;
     }
     public List<Item> getAllItems() {
-        return new ArrayList<>(invoce); // Возвращаем копию списка для безопасности
+        return new ArrayList<>(invoice);
     }
 
-    public List<String> allProduct() {
-        List<String> products = new ArrayList<>();
-        for (Item item : invoce) {
-            String p = item.getProduct();
-            products.add(p);
+    public List<String> getAllSuppliers() {
+        if (invoice == null || invoice.isEmpty()) {
+            return Collections.emptyList();
         }
-        return products;
 
-    }
-
-    public List<String> allSupplier() {
-        List<String> suppliers = new ArrayList<>();
-        for (Item item : invoce) {
-            suppliers.add(item.getSupplier());
-        }
-        return suppliers;
+        return invoice.stream()
+                .map(Item::getSupplier)
+                .filter(Objects::nonNull) // фильтрация null-значений
+                .distinct() // убираем дубликаты
+                .sorted() // сортируем по алфавиту
+                .collect(Collectors.toList()); // собираем в List<String>
     }
 
     public List<String> nameProduct(NameProdukt produkt) {
         List<String> produkts = new ArrayList<>();
-        for (Item item : invoce) {
+        for (Item item : invoice) {
             if (item.getProduct().equals(produkt.getName())) {
                 String itemString = "Наименование продукта: " + item.getProduct() + "Количество: " + item.getItemProduct()
                         + "Цена за едю: " + item.getPrice() + "Всего: " + item.getPriceItem();
