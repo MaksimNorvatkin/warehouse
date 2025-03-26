@@ -1,7 +1,6 @@
 package view;
 
 import view.command.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

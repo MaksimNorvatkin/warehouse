@@ -38,10 +38,6 @@ public class Item {
         return itemProduct;
     }
 
-    public Double getPriceItem() {
-        return priceItem;
-    }
-
     public String getSupplier() {
         return supplier;
     }
@@ -55,29 +51,6 @@ public class Item {
         this.idWarehous = idWarehous;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public void setItemProduct(Integer itemProduct) {
-        this.itemProduct = itemProduct;
-    }
-
-    private double calculatePriceItem() {
-        return price * itemProduct;
-    }
-
-    public void setPriceItem(Double priceItem) {
-        this.priceItem = priceItem;
-    }
-
-    public void setSupplier(String supplier) {
-        this.supplier = supplier;
-    }
 
     @Override
     public String toString() {
