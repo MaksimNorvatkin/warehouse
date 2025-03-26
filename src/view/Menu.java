@@ -14,6 +14,8 @@ public class Menu {
         commands.add(new ShowAllItems(consoleUI));
         commands.add(new ShowAllSuppliers(consoleUI));
         commands.add(new ShowProductsByName(consoleUI));
+        commands.add(new ShowMoveItems(consoleUI));
+        commands.add(new ExitCommand(consoleUI));
     }
     public String printMenu() {
         StringBuilder stringBuilder = new StringBuilder();

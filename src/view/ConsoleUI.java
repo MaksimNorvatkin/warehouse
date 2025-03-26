@@ -30,7 +30,7 @@ public class ConsoleUI implements View {
     }
 
     public void run() {
-        System.out.print("\nНакладная\n");
+        System.out.print("\nНакладная - система управления складом\"\n");
         while (work) {
             System.out.println(menu.printMenu());
             execute();
@@ -136,6 +136,10 @@ public class ConsoleUI implements View {
         // 6. Перемещение
         controller.moveItems(itemId, toWarehouse);
         System.out.println("Товар перемещён!");
+    }
+    public void exit() {
+        work = false;
+        System.out.println("Работа склада завершена.");
     }
 
     private String formatItem(Item item) {
