@@ -12,4 +12,5 @@ public interface ItemController {
     List<Item> getAllItems();
     List<String> getAllSuppliers();
     List<Item> findItemsByName(String productName);
+    public void moveItems(int itemId, int newWarehouseId) ;
 }

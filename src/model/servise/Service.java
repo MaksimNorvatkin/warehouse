@@ -28,4 +28,7 @@ public class Service {
     public List<Item> findItemsByName(String productName){
         return repository.findItemsByName(productName);
     }
+    public void transferItems(int itemId, int newWarehouseId) {
+        repository.moveItem(itemId, newWarehouseId);
+    }
 }

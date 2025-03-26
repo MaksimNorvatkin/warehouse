@@ -103,10 +103,45 @@ public class ConsoleUI implements View {
         }
     }
 
+    public void moveItemsBetweenWarehouses() {
+        // 1. Получаем все товары
+        List<Item> allItems = controller.getAllItems();
+
+        System.out.print("Введите номер склада (1 или 2) откуда перемещаем: ");
+        int fromWarehouse = scanner.nextInt();
+        scanner.nextLine();
+
+        // 3. Фильтруем товары по складу и выводим
+        List<Item> warehouseItems = allItems.stream()
+                .filter(item -> item.getIdWarehous() == fromWarehouse)
+                .collect(Collectors.toList());
+
+        if (warehouseItems.isEmpty()) {
+            System.out.println("На этом складе нет товаров!");
+            return;
+        }
+        warehouseItems.forEach(item ->
+                System.out.println(item.getItemId() + ". " + item.getProduct())
+        );
+
+        // 4. Выбор товара
+        System.out.print("Введите ID товара для перемещения: ");
+        int itemId = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Введите номер склада (1 или 2) куда перемещаем: ");
+        int toWarehouse = scanner.nextInt();
+        scanner.nextLine();
+
+        // 6. Перемещение
+        controller.moveItems(itemId, toWarehouse);
+        System.out.println("Товар перемещён!");
+    }
+
     private String formatItem(Item item) {
         return String.format(
-                "Товар: %-15s | Цена: %-8.2f | Кол-во: %-4d | Сумма: %-8.2f | Поставщик: %-15s | Склад: %d",
-                item.getProduct(), item.getPrice(),
+                "Номер товара: %d |Товар: %-15s | Цена: %-8.2f | Кол-во: %-4d | Сумма: %-8.2f | Поставщик: %-15s | Склад: %d",
+                item.getItemId(), item.getProduct(), item.getPrice(),
                 item.getItemProduct(), item.getPrice() * item.getItemProduct(),
                 item.getSupplier(), item.getIdWarehous()
         );

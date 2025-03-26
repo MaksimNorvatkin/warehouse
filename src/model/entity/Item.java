@@ -1,7 +1,7 @@
 package model.entity;
 
 public class Item {
-    private Integer id;
+    private Integer itemId;
     private Integer idWarehous;
     private String product;
     private Double price;
@@ -18,8 +18,8 @@ public class Item {
     }
 
     //Гетеры
-    public Integer getId() {
-        return id;
+    public Integer getItemId() {
+        return itemId;
     }
 
     public Integer getIdWarehous() {
@@ -47,8 +47,8 @@ public class Item {
     }
 
     //Сеттеры
-    public void setId(Integer id) {
-        this.id = id;
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
     }
 
     public void setIdWarehous(Integer idWarehous) {

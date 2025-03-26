@@ -19,6 +19,8 @@ public class ItemControllerImpl implements ItemController {
     public void setView(View view) {
         this.view = view;
     }
+
+    @Override
     public void addItem(Integer idWarehous, String product, Double price,
                         Integer item, String supplier) {
         String infoString = service.addItem(idWarehous, product, price, item, supplier);
@@ -37,5 +39,10 @@ public class ItemControllerImpl implements ItemController {
     @Override
     public List<Item> findItemsByName(String productName) {
         return service.findItemsByName(productName);
+    }
+
+    @Override
+    public void moveItems(int itemId, int newWarehouseId)  {
+        service.transferItems(itemId,newWarehouseId);
     }
 }

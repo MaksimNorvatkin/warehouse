@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class Warehouse {
     private List<Item> invoice;
-    private long nextId;
+    private int nextId;
 
     public Warehouse() {
         invoice = new ArrayList<>();
@@ -18,9 +18,12 @@ public class Warehouse {
     }
 
     public Item add(Item item) {
+        item.setItemId(nextId);
         invoice.add(item);
+        nextId++;
         return item;
     }
+
     public List<Item> getAllItems() {
         return new ArrayList<>(invoice);
     }
@@ -42,5 +45,12 @@ public class Warehouse {
         return invoice.stream()
                 .filter(item -> item.getProduct().equalsIgnoreCase(productName))
                 .collect(Collectors.toList());
+    }
+
+    public void moveItem(int itemId, int newWarehouseId) {
+        invoice.stream()
+                .filter(item -> item.getItemId().equals(itemId))
+                .findFirst()
+                .ifPresent(item -> item.setIdWarehous(newWarehouseId));
     }
 }
