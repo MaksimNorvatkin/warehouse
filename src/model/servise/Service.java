@@ -25,4 +25,7 @@ public class Service {
     public List<String> getAllSuppliers(){
         return repository.getAllSuppliers();
     }
+    public List<Item> findItemsByName(String productName){
+        return repository.findItemsByName(productName);
+    }
 }

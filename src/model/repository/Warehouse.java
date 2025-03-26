@@ -1,7 +1,6 @@
 package model.repository;
 
 import model.entity.Item;
-import model.entity.NameProdukt;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,15 +38,9 @@ public class Warehouse {
                 .collect(Collectors.toList()); // собираем в List<String>
     }
 
-    public List<String> nameProduct(NameProdukt produkt) {
-        List<String> produkts = new ArrayList<>();
-        for (Item item : invoice) {
-            if (item.getProduct().equals(produkt.getName())) {
-                String itemString = "Наименование продукта: " + item.getProduct() + "Количество: " + item.getItemProduct()
-                        + "Цена за едю: " + item.getPrice() + "Всего: " + item.getPriceItem();
-                produkts.add(itemString);
-            }
-        }
-        return produkts;
+    public List<Item> findItemsByName(String productName) {
+        return invoice.stream()
+                .filter(item -> item.getProduct().equalsIgnoreCase(productName))
+                .collect(Collectors.toList());
     }
 }

@@ -11,4 +11,5 @@ public interface ItemController {
                   Integer item, String supplier);
     List<Item> getAllItems();
     List<String> getAllSuppliers();
+    List<Item> findItemsByName(String productName);
 }

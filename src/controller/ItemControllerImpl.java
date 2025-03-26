@@ -33,4 +33,9 @@ public class ItemControllerImpl implements ItemController {
     public List<String> getAllSuppliers() {
         return service.getAllSuppliers();
     }
+
+    @Override
+    public List<Item> findItemsByName(String productName) {
+        return service.findItemsByName(productName);
+    }
 }

@@ -1,9 +1,6 @@
 package view;
 
-import view.command.AddItem;
-import view.command.Command;
-import view.command.ShowAllItems;
-import view.command.ShowAllSuppliers;
+import view.command.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +13,7 @@ public class Menu {
         commands.add(new AddItem(consoleUI));
         commands.add(new ShowAllItems(consoleUI));
         commands.add(new ShowAllSuppliers(consoleUI));
+        commands.add(new ShowProductsByName(consoleUI));
     }
     public String printMenu() {
         StringBuilder stringBuilder = new StringBuilder();

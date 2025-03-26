@@ -6,6 +6,7 @@ import model.entity.Item;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ConsoleUI implements View {
 
@@ -76,15 +77,6 @@ public class ConsoleUI implements View {
         }
     }
 
-    private String formatItem(Item item) {
-        return String.format(
-                "Товар: %-15s | Цена: %-8.2f | Кол-во: %-4d | Сумма: %-8.2f | Поставщик: %-15s | Склад: %d",
-                item.getProduct(), item.getPrice(),
-                item.getItemProduct(), item.getPrice() * item.getItemProduct(),
-                item.getSupplier(), item.getIdWarehous()
-        );
-    }
-
     public void showAllSuppliers() {
         List<String> suppliers = controller.getAllSuppliers();
         if (suppliers.isEmpty()) {
@@ -96,9 +88,33 @@ public class ConsoleUI implements View {
             printAnswer(result);
         }
     }
+
+    public void showProductsByName() {
+        System.out.print("Введите название товара: ");
+        String name = scanner.nextLine();
+        List<Item> nameItems = controller.findItemsByName(name);
+        if (nameItems.isEmpty()) {
+            printAnswer("Товар не найден");
+        } else {
+            String result = nameItems.stream()
+                    .map(this::formatItem)
+                    .collect(Collectors.joining("\n", "Найденные товары:\n", ""));
+            printAnswer(result);
+        }
+    }
+
+    private String formatItem(Item item) {
+        return String.format(
+                "Товар: %-15s | Цена: %-8.2f | Кол-во: %-4d | Сумма: %-8.2f | Поставщик: %-15s | Склад: %d",
+                item.getProduct(), item.getPrice(),
+                item.getItemProduct(), item.getPrice() * item.getItemProduct(),
+                item.getSupplier(), item.getIdWarehous()
+        );
+    }
+
     private String formatSupplier(String supplier) {
         return String.format(
-                "Поставщик: %-15s",supplier);
+                "Поставщик: %-15s", supplier);
     }
 
     @Override
